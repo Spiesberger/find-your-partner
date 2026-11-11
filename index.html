@@ -250,7 +250,7 @@
 
             <!-- Schöner Hinweis zum Foto -->
             <div class="form-hint">
-                📸 <strong>Wichtiger Hinweis:</strong> Sobald du auf den Absenden-Button klickst, öffnet sich dein E-Mail-Programm mit allen Daten. Bitte hänge dort einfach kurz dein Foto als Datei an, bevor du die E-Mail abschickst!
+                📸 <strong>Hinweis fürs Foto:</strong> Sobald du auf den Absenden-Button klickst, öffnet sich dein E-Mail-Programm mit allen deinen Daten. Bitte hänge dort einfach dein Foto als Datei an, bevor du die E-Mail abschickst!
             </div>
 
             <button type="submit" class="btn-submit">Antrag absenden & E-Mail öffnen</button>
@@ -263,7 +263,7 @@
         e.preventDefault();
 
         const name = document.getElementById('name').value;
-        const geburtsdatum = document.getElementById('geburtsdatum').value;
+        const geburtsdatum = document.getElementById('geburtsdatum/Alter').value || document.getElementById('geburtsdatum').value;
         const beschaeftigung = document.getElementById('beschaeftigung').value;
         const worte = document.getElementById('worte').value;
         const hobbies = document.getElementById('hobbies').value;
@@ -281,7 +281,7 @@
             "• Hobbies: " + hobbies + "\n" +
             "• Musik: " + musik + "\n" +
             "• Kontakt: " + kontakt + "\n\n" +
-            "--- FOTO ---\n" +
+            "--- FOTO-HINWEIS ---\n" +
             "Mein Foto habe ich dieser E-Mail als Anhang hinzugefügt."
         );
 
