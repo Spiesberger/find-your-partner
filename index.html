@@ -203,13 +203,12 @@
         </div>
     </div>
 
-    <!-- Formular direkt an FormSubmit gebunden -->
+    <!-- Formular -->
     <div class="form-card">
         <div class="form-title">Antrag für Kontaktaufnahme</div>
 
         <form action="https://formsubmit.co/spiesberger.nevio@icloud.com" method="POST" enctype="multipart/form-data">
             
-            <!-- Einstellungen für FormSubmit -->
             <input type="hidden" name="_subject" value="Neue Kontaktanfrage für Lysann!">
             <input type="hidden" name="_captcha" value="false">
 
@@ -225,7 +224,6 @@
 
             <div class="form-group">
                 <label for="foto">Dein Foto</label>
-                <!-- Wichtig: name="attachment" sorgt dafür, dass FormSubmit es direkt als echten Dateianhang sendet -->
                 <input type="file" id="foto" name="attachment" accept="image/*" class="form-control" required>
             </div>
 
@@ -235,7 +233,7 @@
             </div>
 
             <div class="form-group">
-                <label name="worte" for="worte">Drei Wörter, die dich beschreiben</label>
+                <label for="worte">Drei Wörter, die dich beschreiben</label>
                 <input type="text" id="worte" name="Drei_Wörter" class="form-control" placeholder="z. B. Humorvoll, Ehrlich, Unternehmungslustig" required>
             </div>
 
