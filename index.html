@@ -203,13 +203,13 @@
         </div>
     </div>
 
-    <!-- Formular mit FormSubmit -->
+    <!-- Formular direkt an FormSubmit gebunden -->
     <div class="form-card">
         <div class="form-title">Antrag für Kontaktaufnahme</div>
 
         <form action="https://formsubmit.co/spiesberger.nevio@icloud.com" method="POST" enctype="multipart/form-data">
             
-            <!-- Versteckte Optionen für FormSubmit (cleaner Betreff & keine Captcha-Abfrage) -->
+            <!-- Einstellungen für FormSubmit -->
             <input type="hidden" name="_subject" value="Neue Kontaktanfrage für Lysann!">
             <input type="hidden" name="_captcha" value="false">
 
@@ -225,17 +225,18 @@
 
             <div class="form-group">
                 <label for="foto">Dein Foto</label>
-                <input type="file" id="foto" name="Foto" accept="image/*" class="form-control" required>
+                <!-- Wichtig: name="attachment" sorgt dafür, dass FormSubmit es direkt als echten Dateianhang sendet -->
+                <input type="file" id="foto" name="attachment" accept="image/*" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="beschaeftigung">Beschäftigung</label>
-                <input type="text" id="beschaeftigung" name="Beschaeftigung" class="form-control" placeholder="Beruf, Studium oder Schule" required>
+                <input type="text" id="beschaeftigung" name="Beschäftigung" class="form-control" placeholder="Beruf, Studium oder Schule" required>
             </div>
 
             <div class="form-group">
-                <label for="worte">Drei Wörter, die dich beschreiben</label>
-                <input type="text" id="worte" name="Drei_Woerter" class="form-control" placeholder="z. B. Humorvoll, Ehrlich, Unternehmungslustig" required>
+                <label name="worte" for="worte">Drei Wörter, die dich beschreiben</label>
+                <input type="text" id="worte" name="Drei_Wörter" class="form-control" placeholder="z. B. Humorvoll, Ehrlich, Unternehmungslustig" required>
             </div>
 
             <div class="form-group">
