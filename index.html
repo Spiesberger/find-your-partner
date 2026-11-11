@@ -129,6 +129,13 @@
             color: var(--text-main);
         }
 
+        .form-hint {
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-top: 5px;
+            display: block;
+        }
+
         .form-control {
             width: 100%;
             padding: 12px 16px;
@@ -221,6 +228,7 @@
             <div class="form-group">
                 <label for="foto">Dein Foto</label>
                 <input type="file" id="foto" accept="image/*" class="form-control" required>
+                <span class="form-hint">Das Bild wird beim Absenden direkt für die E-Mail aufbereitet.</span>
             </div>
 
             <div class="form-group">
@@ -266,24 +274,35 @@
         const kontakt = document.getElementById('kontakt').value;
         const fotoInput = document.getElementById('foto');
 
-        let fotoInfo = "Kein Foto ausgewählt";
-        if (fotoInput.files && fotoInput.files[0]) {
-            fotoInfo = "Hochgeladenes Bild: " + fotoInput.files[0].name;
+        function sendMail(imageCode) {
+            const subject = encodeURIComponent("Neue Kontaktanfrage für Lysann von " + name);
+            const body = encodeURIComponent(
+                "Hallo Lysann bzw. Nevio,\n\n" +
+                "hier sind die Daten aus dem Kontaktformular:\n\n" +
+                "• Name: " + name + "\n" +
+                "• Geburtstag/Alter: " + geburtsdatum + "\n" +
+                "• Beschäftigung: " + beschaeftigung + "\n" +
+                "• Drei Wörter: " + worte + "\n" +
+                "• Hobbies: " + hobbies + "\n" +
+                "• Musik: " + musik + "\n" +
+                "• Kontakt: " + kontakt + "\n\n" +
+                "--- FOTO-DATEN (Bild-Code) ---\n" +
+                imageCode
+            );
+
+            window.location.href = "mailto:spiesberger.nevio@icloud.com?subject=" + subject + "&body=" + body;
         }
 
-        const subject = encodeURIComponent("Neue Kontaktanfrage für Lysann von " + name);
-        const body = encodeURIComponent(
-            "Name: " + name + "\n" +
-            "Geburtstag/Alter: " + geburtsdatum + "\n" +
-            "Beschäftigung: " + beschaeftigung + "\n" +
-            "Drei Wörter: " + worte + "\n" +
-            "Hobbies: " + hobbies + "\n" +
-            "Musik: " + musik + "\n" +
-            "Kontakt: " + kontakt + "\n\n" +
-            fotoInfo + "\n(Hinweis: Bitte den Bewerber bitten, das Foto bei Bedarf kurz per Chat/Mail nachzureichen oder direkt anzuhängen, falls das E-Mail-Programm es unterstützt)."
-        );
-
-        window.location.href = "mailto:spiesberger.nevio@icloud.com?subject=" + subject + "&body=" + body;
+        if (fotoInput.files && fotoInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Das Bild wird hier als Base64-Datenstrom eingelesen
+                sendMail(event.target.result);
+            };
+            reader.readAsDataURL(fotoInput.files[0]);
+        } else {
+            sendMail("Kein Foto ausgewählt");
+        }
     });
 </script>
 
