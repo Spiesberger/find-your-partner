@@ -207,53 +207,85 @@
     <div class="form-card">
         <div class="form-title">Antrag für Kontaktaufnahme</div>
 
-        <!-- Da GitHub rein statisch ist, leiten wir die Daten per mailto oder an einen sicheren Handler weiter -->
-        <form id="contactForm" action="mailto:spiesberger.nevio@icloud.com" method="POST" enctype="text/plain">
-
+        <form id="contactForm">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="Name" class="form-control" placeholder="Dein vollständiger Name" required>
+                <input type="text" id="name" class="form-control" placeholder="Dein vollständiger Name" required>
             </div>
 
             <div class="form-group">
                 <label for="geburtsdatum">Geburtstag und Alter</label>
-                <input type="text" id="geburtsdatum" name="Geburtsdatum_Alter" class="form-control" placeholder="z. B. 12.04.2005 (19 Jahre)" required>
+                <input type="text" id="geburtsdatum" class="form-control" placeholder="z. B. 12.04.2005 (19 Jahre)" required>
             </div>
 
             <div class="form-group">
                 <label for="foto">Dein Foto</label>
-                <input type="file" id="foto" name="Foto" accept="image/*" class="form-control" required>
+                <input type="file" id="foto" accept="image/*" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="beschaeftigung">Beschäftigung</label>
-                <input type="text" id="beschaeftigung" name="Beschaeftigung" class="form-control" placeholder="Beruf, Studium oder Schule" required>
+                <input type="text" id="beschaeftigung" class="form-control" placeholder="Beruf, Studium oder Schule" required>
             </div>
 
             <div class="form-group">
                 <label for="worte">Drei Wörter, die dich beschreiben</label>
-                <input type="text" id="worte" name="Drei_Woerter" class="form-control" placeholder="z. B. Humorvoll, Ehrlich, Unternehmungslustig" required>
+                <input type="text" id="worte" class="form-control" placeholder="z. B. Humorvoll, Ehrlich, Unternehmungslustig" required>
             </div>
 
             <div class="form-group">
                 <label for="hobbies">Drei deiner Hobbys / Lieblingsaktivitäten</label>
-                <input type="text" id="hobbies" name="Hobbies" class="form-control" placeholder="Deine Lieblingsbeschäftigung" required>
+                <input type="text" id="hobbies" class="form-control" placeholder="Deine Lieblingsbeschäftigung" required>
             </div>
 
             <div class="form-group">
                 <label for="musik">Was für Musik hörst du?</label>
-                <input type="text" id="musik" name="Musik" class="form-control" placeholder="Genren, Künstler oder Bands" required>
+                <input type="text" id="musik" class="form-control" placeholder="Genren, Künstler oder Bands" required>
             </div>
 
             <div class="form-group">
                 <label for="kontakt">Deine Kontaktinformation</label>
-                <input type="text" id="kontakt" name="Kontaktinformation" class="form-control" placeholder="Instagram, E-Mail oder Handynummer" required>
+                <input type="text" id="kontakt" class="form-control" placeholder="Instagram, E-Mail oder Handynummer" required>
             </div>
 
             <button type="submit" class="btn-submit">Antrag absenden</button>
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const geburtsdatum = document.getElementById('geburtsdatum').value;
+        const beschaeftigung = document.getElementById('beschaeftigung').value;
+        const worte = document.getElementById('worte').value;
+        const hobbies = document.getElementById('hobbies').value;
+        const musik = document.getElementById('musik').value;
+        const kontakt = document.getElementById('kontakt').value;
+        const fotoInput = document.getElementById('foto');
+
+        let fotoInfo = "Kein Foto ausgewählt";
+        if (fotoInput.files && fotoInput.files[0]) {
+            fotoInfo = "Hochgeladenes Bild: " + fotoInput.files[0].name;
+        }
+
+        const subject = encodeURIComponent("Neue Kontaktanfrage für Lysann von " + name);
+        const body = encodeURIComponent(
+            "Name: " + name + "\n" +
+            "Geburtstag/Alter: " + geburtsdatum + "\n" +
+            "Beschäftigung: " + beschaeftigung + "\n" +
+            "Drei Wörter: " + worte + "\n" +
+            "Hobbies: " + hobbies + "\n" +
+            "Musik: " + musik + "\n" +
+            "Kontakt: " + kontakt + "\n\n" +
+            fotoInfo + "\n(Hinweis: Bitte den Bewerber bitten, das Foto bei Bedarf kurz per Chat/Mail nachzureichen oder direkt anzuhängen, falls das E-Mail-Programm es unterstützt)."
+        );
+
+        window.location.href = "mailto:spiesberger.nevio@icloud.com?subject=" + subject + "&body=" + body;
+    });
+</script>
 
 </body>
 </html>
