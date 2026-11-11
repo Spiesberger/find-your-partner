@@ -35,7 +35,6 @@
             margin: 0 auto;
         }
 
-        /* Profile Header Card */
         .profile-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -102,7 +101,6 @@
             color: var(--text-main);
         }
 
-        /* Form Card */
         .form-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -171,23 +169,15 @@
         .btn-submit:hover {
             background-color: var(--primary-hover);
         }
-
-        .btn-submit:active {
-            transform: scale(0.99);
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-
-    <!-- Profil Steckbrief -->
     <div class="profile-card">
         <img src="lysann.png" alt="Lysann Humboldt" class="profile-image">
-        
         <div class="profile-title">Lysann Humboldt</div>
         <div class="profile-subtitle">Steckbrief & Informationen</div>
-        
         <div class="profile-grid">
             <div class="profile-item">
                 <label>Alter</label>
@@ -212,12 +202,12 @@
         </div>
     </div>
 
-    <!-- Formular -->
     <div class="form-card">
         <div class="form-title">Antrag für Kontaktaufnahme</div>
 
-        <form action="https://formspree.io/f/xeagqgea" method="POST" enctype="multipart/form-data">
-            
+        <form name="kontakt-lysann" method="POST" data-netlify="true" enctype="multipart/form-data">
+            <input type="hidden" name="form-name" value="kontakt-lysann">
+
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="Dein vollständiger Name" required>
@@ -245,7 +235,7 @@
 
             <div class="form-group">
                 <label for="hobbies">Drei deiner Hobbys / Lieblingsaktivitäten</label>
-                <input type="text" id="hobbies" name="hobbies" class="form-control" placeholder="Deine Lieblingsbeschäftigungen" required>
+                <input type="text" id="hobbies" name="hobbies" class="form-control" placeholder="Deine Lieblingsbeschäftigung" required>
             </div>
 
             <div class="form-group">
@@ -261,7 +251,6 @@
             <button type="submit" class="btn-submit">Antrag absenden</button>
         </form>
     </div>
-
 </div>
 
 </body>
